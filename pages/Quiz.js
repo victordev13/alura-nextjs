@@ -18,15 +18,8 @@ export const QuizContainer = styled.div`
     padding: 15px;
   }
 `;
-
-export default function Home() {
+export default function QuizPage() {
   const router = useRouter();
-  const [name, setName] = React.useState('');
-
-  const handleSubmitName = (e) => {
-    e.preventDefault();
-    router.push(`/Quiz?name=${name}`);
-  };
 
   return (
     <QuizBackground backgroundImage={db.bg}>
@@ -38,18 +31,7 @@ export default function Home() {
           </Widget.Header>
           <Widget.Content>
             <p>{db.description}</p>
-            <form onSubmit={handleSubmitName}>
-              <input
-                placeholder="Seu nome"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                maxLength="10"
-              />
-              <button type="submit" disabled={name.length === 0}>
-                Jogar
-                {name}
-              </button>
-            </form>
+            <p>{router.query.name}</p>
           </Widget.Content>
         </Widget>
 
