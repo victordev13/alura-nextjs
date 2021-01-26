@@ -21,10 +21,10 @@
     ],
     "theme": {
       "colors": {
-        "primary": "#0D47A1",
-        "secondary": "#001b2e",
-        "mainBg": "#346fd122",
-        "contrastText": "#ffefd3",
+        "primary": "#307fe2",
+        "secondary": "#434343",
+        "mainBg": "#262626",
+        "contrastText": "#fff",
         "wrong": "#FF5722",
         "success": "#4CAF50"
       },
