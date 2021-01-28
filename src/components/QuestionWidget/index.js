@@ -3,8 +3,52 @@ import React from 'react';
 import Widget from '../Widget';
 import Button from '../Button';
 import AlternativesForm from '../AlternativeForm';
+import db from '../../../db.json';
 
 // eslint-disable-next-line object-curly-newline
+function Success() {
+    return (
+        <div
+            style={{ marginTop: '10px', display: 'flex', alignItems: 'center' }}
+        >
+            <div
+                style={{
+                    width: '30px',
+                    height: '30px',
+                    padding: '6px',
+                    borderRadius: '50px',
+                    backgroundColor: db.theme.colors.success,
+                    marginRight: '5px',
+                }}
+            >
+                <i class="fas fa-check"></i>
+            </div>
+            <p>Parabéns, você acertou!</p>
+        </div>
+    );
+}
+
+function Error() {
+    return (
+        <div
+            style={{ marginTop: '10px', display: 'flex', alignItems: 'center' }}
+        >
+            <div
+                style={{
+                    width: '30px',
+                    height: '30px',
+                    padding: '5px 8px',
+                    borderRadius: '50px',
+                    backgroundColor: db.theme.colors.wrong,
+                    marginRight: '5px',
+                }}
+            >
+                <i class="fas fa-times"></i>
+            </div>
+            <p>Que pena, você errou!</p>
+        </div>
+    );
+}
 export default function QuestionWidget({
     question,
     questionIndex,
@@ -93,9 +137,9 @@ export default function QuestionWidget({
                     <Button type="submit" disabled={!hasAlternativeSelected}>
                         Confirmar
                     </Button>
-                    {isQuestionSubmited && isCorrect && <p>você acertou</p>}
+                    {isQuestionSubmited && isCorrect && <Success />}
 
-                    {isQuestionSubmited && !isCorrect && <p>você errou</p>}
+                    {isQuestionSubmited && !isCorrect && <Error />}
                 </AlternativesForm>
             </Widget.Content>
         </Widget>
