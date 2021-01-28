@@ -47,7 +47,7 @@ export default function App({ Component, pageProps }) {
                 <script
                     defer
                     src="https://kit.fontawesome.com/33bf191c75.js"
-                    crossorigin="anonymous"
+                    crossOrigin="anonymous"
                 ></script>
             </Head>
             <ThemeProvider theme={theme}>
