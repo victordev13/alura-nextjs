@@ -9,11 +9,19 @@ import QuestionWidget from '../src/components/QuestionWidget';
 
 function LoadingWidget() {
   return (
-    <Widget>
-      <Widget.Header>Carregando...</Widget.Header>
+      <Widget>
+          <Widget.Header>Carregando...</Widget.Header>
 
-      <Widget.Content>[Desafio do Loading]</Widget.Content>
-    </Widget>
+          <Widget.Content>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <img
+                      src="/spinner.gif"
+                      style={{ width: '50px', marginRight: '10px' }}
+                  />
+                  Carregando...
+              </div>
+          </Widget.Content>
+      </Widget>
   );
 }
 
@@ -22,8 +30,9 @@ const screenStates = {
   LOADING: 'LOADING',
   RESULT: 'RESULT',
 };
+
 export default function QuizPage() {
-  const [screenState, setScreenState] = React.useState(screenStates.QUIZ);
+  const [screenState, setScreenState] = React.useState(screenStates.LOADING);
   const totalQuestions = db.questions.length;
   const [currentQuestion, setCurrentQuestion] = React.useState(0);
   const questionIndex = currentQuestion;
@@ -31,8 +40,8 @@ export default function QuizPage() {
 
   React.useEffect(() => {
     setTimeout(() => {
-      // setScreenState(screenStates.QUIZ);
-    }, 1 * 1000);
+        setScreenState(screenStates.QUIZ);
+    }, 200);
   }, []);
 
   function handleSubmitQuiz() {
@@ -56,13 +65,19 @@ export default function QuizPage() {
             onSubmit={handleSubmitQuiz}
           />
         )}
-
+          
         {screenState === screenStates.LOADING && <LoadingWidget />}
-
+        <Widget>
+            <Widget.Content>
+              <h1>Quizes da Galera</h1>
+              <p>lorem ipsum dolor sit amet...</p>
+            </Widget.Content>
+          </Widget>
         {screenState === screenStates.RESULT && (
           <div>Você acertou X questões, parabéns!</div>
         )}
       </QuizContainer>
+      
     </QuizBackground>
   );
 }

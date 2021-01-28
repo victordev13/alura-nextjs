@@ -1,57 +1,156 @@
 {
-    "bg": "https://wallpaperaccess.com/full/1092758.jpg",
-    "title": "Quiz",
-    "description": "Teste seus conhecimentos bíblicos;",
-    "questions": [
-      {
-        "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-        "title": "Como fazer um seletor por id via CSS?",
-        "description": "Essa é pra aquecer",
-        "answer": 2,
-        "alternatives": [
-          ".elemento",
-          "*elemento",
-          "#elemento",
-          "%elemento"
-        ]
-      },
-      {
-        "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-        "title": "Questão 2",
-        "description": "Essa é pra aquecer",
-        "answer": 2,
-        "alternatives": [
-          "1",
-          "2",
-          "3",
-          "4"
-        ]
-      },
-      {
-        "image": "https://media.giphy.com/media/xUOxf3yDKCuwpOlT3i/giphy.gif",
-        "title": "Questão 3",
-        "description": "Essa é pra aquecer",
-        "answer": 2,
-        "alternatives": [
-          "1",
-          "2",
-          "3",
-          "4"
-        ]
-      }
-    ],
-    "external": [
-      ""
-    ],
-    "theme": {
-      "colors": {
-        "primary": "#307fe2",
-        "secondary": "#434343",
-        "mainBg": "#262626",
-        "contrastText": "#fff",
-        "wrong": "#FF5722",
-        "success": "#4CAF50"
-      },
-      "borderRadius": "4px"
+  "bg": "https://wallpaperaccess.com/full/1092758.jpg",
+  "title": "Quiz bíblico",
+  "description": "Teste seus conhecimentos bíblicos",
+  "questions": [
+    {
+      "image": "",
+      "title": "Qual desses não teve o seu nome mudado na Bíblia?",
+      "description": "",
+      "answer": 3,
+      "alternatives": [
+        "Sara",
+        "Abraão",
+        "Jacó",
+        "Davi",
+        "Pedro"
+      ]
+    },
+    {
+      "image": "",
+      "title": "Qual animal falou com Balaão?",
+      "description": "",
+      "answer": 0,
+      "alternatives": [
+        "Jumenta",
+        "Camelo",
+        "Cordeiro",
+        "Pomba"
+      ]
+    },
+    {
+      "image": "",
+      "title": "Qual o nome do jardim plantado por Deus para o 1º casal criado?",
+      "description": "",
+      "answer": 2,
+      "alternatives": [
+        "Jardim do Getsêmani",
+        "Rosa de Sarom",
+        "Jardim do Éden",
+        "Paraíso"
+      ]
+    },
+    {
+      "image": "",
+      "title": "Em quais livros da Bíblia é narrada a história do nascimento de Jesus?",
+      "description": "",
+      "answer": 3,
+      "alternatives": [
+        "Gênesis e Salmos",
+        "Mateus e Marcos",
+        "Hebreus e Apocalipse",
+        "Mateus e Lucas"
+      ]
+    },
+    {
+      "image": "",
+      "title": "Qual dos discípulos negou a Jesus?",
+      "description": "",
+      "answer": 2,
+      "alternatives": [
+        "Judas Iscariotes",
+        "João",
+        "Pedro",
+        "Bartolomeu"
+      ]
+    },
+    {
+      "image": "",
+      "title": "Judas traiu a Jesus por qual valor?",
+      "description": "",
+      "answer": 0,
+      "alternatives": [
+        "30 moedas de prata",
+        "100 moedas de ouro",
+        "50 moedas de prata",
+        "30 moedas de ouro"
+      ]
+    },
+    {
+      "image": "",
+      "title": "A Bíblia é composta por quantos livros?",
+      "description": "",
+      "answer": 0,
+      "alternatives": [
+        "88 livros",
+        "37 livros",
+        "66 livros",
+        "100 livros"
+      ]
+    },
+    {
+      "image": "",
+      "title": "Qual é o menor versículo da Bíblia? ",
+      "description": "",
+      "answer": 3,
+      "alternatives": [
+        "João 11:35",
+        "Ester 8:9",
+        "Êxodo 20:13",
+        "Jó 3:2"
+      ]
+    },
+    {
+      "image": "",
+      "title": "",
+      "description": "Qual o nome da cidade onde Jesus nasceu?",
+      "answer": 1,
+      "alternatives": [
+        "Nazaré",
+        "Belém",
+        "Jerusalém",
+        "Galiléia"
+      ]
+    },
+    {
+      "image": "",
+      "title": "Com que idade Jesus começou seu ministério?",
+      "description": "",
+      "answer": 0,
+      "alternatives": [
+        "Com aproximadamente 30 anos",
+        "Com 18 anos",
+        "Com 12 anos",
+        "Com aproximadamente 7 anos"
+      ]
+    },
+    {
+      "image": "",
+      "title": "",
+      "description": "",
+      "answer": 3,
+      "alternatives": []
+    },
+    {
+      "image": "",
+      "title": "",
+      "description": "",
+      "answer": 3,
+      "alternatives": []
     }
+  ],
+  "external": [
+    ""
+  ],
+  "theme": {
+    "colors": {
+      "primary": "#307fe2",
+      "secondary": "#434343",
+      "mainBg": "#262626",
+      "contrastText": "#fff",
+      "wrong": "#FF5722",
+      "success": "#4CAF50"
+    },
+    "borderRadius": "4px"
   }
+}

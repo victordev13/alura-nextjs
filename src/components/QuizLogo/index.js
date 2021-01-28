@@ -8,9 +8,17 @@ const Logo = styled.div`
     margin: 0;
   }
 `;
+const LogoImg = styled.img`
+    width: 150px;
+    margin: -15px 0;
+`;
 
 function QuizLogo() {
-  return <Logo>Quiz Bíblico</Logo>;
+  return (
+      <Logo>
+          <LogoImg src="logo_quiz.png" />
+      </Logo>
+  );
 }
 
 export default QuizLogo;
