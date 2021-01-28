@@ -21,7 +21,7 @@ function Success() {
                     marginRight: '5px',
                 }}
             >
-                <i class="fas fa-check"></i>
+                <i className="fas fa-check"></i>
             </div>
             <p>Parabéns, você acertou!</p>
         </div>
@@ -43,7 +43,7 @@ function Error() {
                     marginRight: '5px',
                 }}
             >
-                <i class="fas fa-times"></i>
+                <i className="fas fa-times"></i>
             </div>
             <p>Que pena, você errou!</p>
         </div>
