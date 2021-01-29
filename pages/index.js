@@ -16,7 +16,7 @@ export default function Home() {
 
     const handleSubmitName = (e) => {
         e.preventDefault();
-        router.push(`/Quiz?name=${name}`);
+        router.push(`/quiz?name=${name}`);
     };
 
     return (
@@ -45,12 +45,28 @@ export default function Home() {
                     </Widget.Content>
                 </Widget>
 
-                {/* <Widget>
-            <Widget.Content>
-              <h1>Quizes da Galera</h1>
-              <p>lorem ipsum dolor sit amet...</p>
-            </Widget.Content>
-          </Widget> */}
+                <Widget>
+                    <Widget.Content>
+                        <h1>Veja outros quizes</h1>
+                        <ul>
+                            {db.external.map((item, index) => {
+                                const [projectName, gitHubUser] = item
+                                    .replace(/\//g, '')
+                                    .replace('https:', '')
+                                    .replace('.vercel.app', '')
+                                    .split('.');
+
+                                return (
+                                    <li key={index}>
+                                        <Widget.Topic href={item}>
+                                            {`${gitHubUser}/${projectName}`}
+                                        </Widget.Topic>
+                                    </li>
+                                );
+                            })}
+                        </ul>
+                    </Widget.Content>
+                </Widget>
                 <Footer />
             </QuizContainer>
             <GitHubCorner projectUrl="https://github.com/omariosouto" />

@@ -21,7 +21,7 @@ function Success() {
                     marginRight: '5px',
                 }}
             >
-                <i className="fas fa-check"></i>
+                <img src="/check.png" />
             </div>
             <p>Parabéns, você acertou!</p>
         </div>
@@ -37,13 +37,13 @@ function Error() {
                 style={{
                     width: '30px',
                     height: '30px',
-                    padding: '5px 8px',
+                    padding: '5px 6px',
                     borderRadius: '50px',
                     backgroundColor: db.theme.colors.wrong,
                     marginRight: '5px',
                 }}
             >
-                <i className="fas fa-times"></i>
+                <img src="/error.png" />
             </div>
             <p>Que pena, você errou!</p>
         </div>
@@ -120,7 +120,7 @@ export default function QuestionWidget({
                                         id={alternativeId}
                                         name={questionId}
                                         type="radio"
-                                        onChange={() => {
+                                        onClick={() => {
                                             setSelectedAlternative(
                                                 alternativeIndex
                                             );

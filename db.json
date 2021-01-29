@@ -126,7 +126,7 @@
     }
   ],
   "external": [
-    ""
+    "https://quiz-react.brenoha.vercel.app/"
   ],
   "theme": {
     "colors": {
