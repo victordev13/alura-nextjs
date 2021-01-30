@@ -5,16 +5,25 @@ import Button from '../Button';
 import AlternativesForm from '../AlternativeForm';
 import db from '../../../db.json';
 import BackLinkArrow from '../BackLinkArrow';
+import { motion } from 'framer-motion';
 
 // eslint-disable-next-line object-curly-newline
 function Success() {
     return (
-        <div
+        <motion.div
+            variants={{
+                show: { opacity: 1, y: '0' },
+                hidden: { opacity: 0, y: '-100%' },
+            }}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.2 }}
             style={{
                 marginTop: '10px',
                 display: 'flex',
                 alignItems: 'center',
-            }}>
+            }}
+        >
             <div
                 style={{
                     width: '30px',
@@ -23,22 +32,31 @@ function Success() {
                     borderRadius: '50px',
                     backgroundColor: db.theme.colors.success,
                     marginRight: '5px',
-                }}>
+                }}
+            >
                 <img src="/check.png" />
             </div>
             <p>Parabéns, é isso mesmo!</p>
-        </div>
+        </motion.div>
     );
 }
 
 function Error() {
     return (
-        <div
+        <motion.div
+            variants={{
+                show: { opacity: 1, y: '0' },
+                hidden: { opacity: 0, y: '-100%' },
+            }}
+            initial="hidden"
+            animate="show"
+            transition={{ duration: 0.2 }}
             style={{
                 marginTop: '10px',
                 display: 'flex',
                 alignItems: 'center',
-            }}>
+            }}
+        >
             <div
                 style={{
                     width: '30px',
@@ -47,11 +65,12 @@ function Error() {
                     borderRadius: '50px',
                     backgroundColor: db.theme.colors.wrong,
                     marginRight: '5px',
-                }}>
+                }}
+            >
                 <img src="/error.png" />
             </div>
             <p>Opa, tu vacilou!</p>
-        </div>
+        </motion.div>
     );
 }
 export default function QuestionWidget({
@@ -103,7 +122,8 @@ export default function QuestionWidget({
                             setSelectedAlternative(undefined);
                             setDisabled(false);
                         }, 1500);
-                    }}>
+                    }}
+                >
                     {question.alternatives.map(
                         (alternative, alternativeIndex) => {
                             const alternativeId = `alternative__${alternativeIndex}`;
@@ -114,13 +134,16 @@ export default function QuestionWidget({
                                 selectedAlternative === alternativeIndex;
                             return (
                                 <Widget.Topic
-                                    as="label"
+                                    as={motion.label}
+                                    whileHover={{ scale: 1.01 }}
+                                    whileTap={{ scale: 0.99 }}
                                     htmlFor={alternativeId}
                                     key={alternativeId}
                                     data-selected={isSelected}
                                     data-status={
                                         isQuestionSubmited && alternativeStatus
-                                    }>
+                                    }
+                                >
                                     <input
                                         style={{ display: 'none' }}
                                         id={alternativeId}
@@ -142,7 +165,13 @@ export default function QuestionWidget({
                             );
                         }
                     )}
-                    <Button type="submit" disabled={!hasAlternativeSelected}>
+                    <Button
+                        as={motion.button}
+                        whileHover={{ scale: 1.01 }}
+                        whileTap={{ scale: 0.99 }}
+                        type="submit"
+                        disabled={!hasAlternativeSelected}
+                    >
                         Confirmar
                     </Button>
                     {isQuestionSubmited && isCorrect && <Success />}

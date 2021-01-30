@@ -18,7 +18,7 @@ const Button = styled.button`
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
     &:hover,
     &:focus {
-        opacity: 0.5;
+        opacity: 0.7;
     }
     &:disabled {
         background-color: #979797;
@@ -27,8 +27,8 @@ const Button = styled.button`
 `;
 
 Button.propTypes = {
-  type: PropTypes.oneOf(['submit', 'type', 'button']).isRequired,
-  children: PropTypes.node.isRequired,
+    type: PropTypes.oneOf(['submit', 'type', 'button']).isRequired,
+    children: PropTypes.node.isRequired,
 };
 
 export default Button;
