@@ -2,10 +2,14 @@
 import React from 'react';
 import db from '../../db.json';
 import Widget from '../../src/components/Widget';
+import Button from '../../src/components/Button';
 import QuizLogo from '../../src/components/QuizLogo';
 import QuizBackground from '../../src/components/QuizBackground';
 import QuizContainer from '../../src/components/QuizContainer';
 import QuestionWidget from '../../src/components/QuestionWidget';
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
+import Link from '../../src/components/Link';
 
 function LoadingWidget() {
     return (
@@ -24,27 +28,66 @@ function LoadingWidget() {
         </Widget>
     );
 }
-function ResultWidget({ results }) {
+const ReturnMessage = styled.p`
+    color: ${({ theme }) => theme.colors.contrastText};
+    background-color: ${({ theme }) => `${theme.colors.primary}40`};
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-radius: ${({ theme }) => theme.borderRadius};
+    transition: 0.3s;
+    display: block;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`;
+
+function ResultWidget({ results, questions }) {
+    const totalQuestions = results.filter((result) => result).length;
+    const playerName =
+        getPlayerName().charAt(0).toUpperCase() + getPlayerName().slice(1);
     return (
         <Widget>
             <Widget.Header>Resultado</Widget.Header>
             <Widget.Content>
-                {/* <p>Parabéns, {getPlayerName}!</p> */}
+                {!totalQuestions >= questions.length * 0.6 && (
+                    <ReturnMessage>
+                        <img src="hands.gif" width="40px" />
+                        <b>Parabéns, {playerName}!</b>
+                    </ReturnMessage>
+                )}
+                {totalQuestions < questions.length * 0.6 && (
+                    <ReturnMessage>
+                        <b>{playerName}, você precisa ler um pouco mais :)!</b>
+                    </ReturnMessage>
+                )}
                 <p>
-                    Você acertou {results.filter((result) => result).length}{' '}
-                    questões
+                    Você acertou {totalQuestions} questões de {questions.length}
+                    !
                 </p>
                 <ul>
                     {results.map((result, index) => {
+                        let currentQuestion = questions[index].title;
+                        const currentColor =
+                            result === true
+                                ? db.theme.colors.success
+                                : db.theme.colors.wrong;
+                        if (currentQuestion.length >= 30) {
+                            currentQuestion = currentQuestion
+                                .slice(0, 27)
+                                .padEnd(30, '...');
+                        }
+
                         return (
-                            <li key={index}>
-                                #{index <= 9 ? 0 : ''}
-                                {index + 1}:{' '}
-                                {result === true ? 'Acertou' : 'Errou'}
+                            <li key={index} style={{ color: currentColor }}>
+                                {index + 1} - {currentQuestion}
+                               
                             </li>
                         );
                     })}
                 </ul>
+                <Link href={'/'} passHref>
+                    <Button type="button">Voltar para o início</Button>
+                </Link>
             </Widget.Content>
         </Widget>
     );
@@ -60,18 +103,23 @@ export default function QuizPage() {
     const [screenState, setScreenState] = React.useState(screenStates.LOADING);
     const totalQuestions = db.questions.length;
     const [currentQuestion, setCurrentQuestion] = React.useState(0);
-    const [results, setResult] = React.useState([true, false, true]);
+    const [results, setResult] = React.useState([]);
     const questionIndex = currentQuestion;
     const question = db.questions[questionIndex];
 
     function pushResult(result) {
         setResult([...results, result]);
     }
+    const router = useRouter();
 
     React.useEffect(() => {
-        setTimeout(() => {
-            setScreenState(screenStates.QUIZ);
-        }, 200);
+        if (!router.query.name) {
+            router.push('/');
+        } else {
+            setTimeout(() => {
+                setScreenState(screenStates.QUIZ);
+            }, 200);
+        }
     }, []);
 
     function handleSubmitQuiz() {
@@ -98,17 +146,14 @@ export default function QuizPage() {
                 )}
 
                 {screenState === screenStates.LOADING && <LoadingWidget />}
-
                 {screenState === screenStates.RESULT && (
-                    <ResultWidget results={results} />
+                    <ResultWidget results={results} questions={db.questions} />
                 )}
-                {/* <Widget>
-                    <Widget.Content>
-                        <h1>Quizes da Galera</h1>
-                        <p>lorem ipsum dolor sit amet...</p>
-                    </Widget.Content>
-                </Widget> */}
             </QuizContainer>
         </QuizBackground>
     );
+}
+
+function getPlayerName() {
+    return localStorage.getItem('player');
 }

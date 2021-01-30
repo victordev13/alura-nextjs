@@ -4,13 +4,17 @@ import Widget from '../Widget';
 import Button from '../Button';
 import AlternativesForm from '../AlternativeForm';
 import db from '../../../db.json';
+import BackLinkArrow from '../BackLinkArrow';
 
 // eslint-disable-next-line object-curly-newline
 function Success() {
     return (
         <div
-            style={{ marginTop: '10px', display: 'flex', alignItems: 'center' }}
-        >
+            style={{
+                marginTop: '10px',
+                display: 'flex',
+                alignItems: 'center',
+            }}>
             <div
                 style={{
                     width: '30px',
@@ -19,11 +23,10 @@ function Success() {
                     borderRadius: '50px',
                     backgroundColor: db.theme.colors.success,
                     marginRight: '5px',
-                }}
-            >
+                }}>
                 <img src="/check.png" />
             </div>
-            <p>Parabéns, você acertou!</p>
+            <p>Parabéns, é isso mesmo!</p>
         </div>
     );
 }
@@ -31,21 +34,23 @@ function Success() {
 function Error() {
     return (
         <div
-            style={{ marginTop: '10px', display: 'flex', alignItems: 'center' }}
-        >
+            style={{
+                marginTop: '10px',
+                display: 'flex',
+                alignItems: 'center',
+            }}>
             <div
                 style={{
                     width: '30px',
                     height: '30px',
-                    padding: '5px 6px',
+                    padding: '7px 7px',
                     borderRadius: '50px',
                     backgroundColor: db.theme.colors.wrong,
                     marginRight: '5px',
-                }}
-            >
+                }}>
                 <img src="/error.png" />
             </div>
-            <p>Que pena, você errou!</p>
+            <p>Opa, tu vacilou!</p>
         </div>
     );
 }
@@ -60,6 +65,7 @@ export default function QuestionWidget({
         undefined
     );
     const [isQuestionSubmited, setIsQuestionSubmited] = React.useState(false);
+    const [disabled, setDisabled] = React.useState(false);
     const hasAlternativeSelected = selectedAlternative !== undefined;
     const questionId = `question__${questionIndex}`;
     const isCorrect = selectedAlternative == question.answer;
@@ -67,7 +73,7 @@ export default function QuestionWidget({
     return (
         <Widget>
             <Widget.Header>
-                {/* <BackLinkArrow href="/" /> */}
+                <BackLinkArrow href="/" />
                 <h3>{`Pergunta ${questionIndex + 1} de ${totalQuestions}`}</h3>
             </Widget.Header>
             {!!question.image && (
@@ -88,15 +94,16 @@ export default function QuestionWidget({
                 <AlternativesForm
                     onSubmit={(infosDoEvento) => {
                         infosDoEvento.preventDefault();
+                        setDisabled(true);
                         setIsQuestionSubmited(true);
                         pushResult(isCorrect);
                         setTimeout(() => {
                             onSubmit();
                             setIsQuestionSubmited(false);
                             setSelectedAlternative(undefined);
+                            setDisabled(false);
                         }, 1500);
-                    }}
-                >
+                    }}>
                     {question.alternatives.map(
                         (alternative, alternativeIndex) => {
                             const alternativeId = `alternative__${alternativeIndex}`;
@@ -113,19 +120,20 @@ export default function QuestionWidget({
                                     data-selected={isSelected}
                                     data-status={
                                         isQuestionSubmited && alternativeStatus
-                                    }
-                                >
+                                    }>
                                     <input
                                         style={{ display: 'none' }}
                                         id={alternativeId}
                                         name={questionId}
                                         type="radio"
+                                        readOnly={disabled}
                                         onClick={() => {
-                                            setSelectedAlternative(
-                                                alternativeIndex
-                                            );
+                                            !disabled &&
+                                                setSelectedAlternative(
+                                                    alternativeIndex
+                                                );
                                             console.log(
-                                                `alternativa selecionada: ${selectedAlternative}`
+                                                `alternativa selecionada, index: ${alternativeIndex}`
                                             );
                                         }}
                                     />

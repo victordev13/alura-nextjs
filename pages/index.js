@@ -9,6 +9,7 @@ import GitHubCorner from '../src/components/GitHubCorner';
 import Input from '../src/components/Input';
 import Button from '../src/components/Button';
 import QuizContainer from '../src/components/QuizContainer';
+import Link from '../src/components/Link';
 
 export default function Home() {
     const router = useRouter();
@@ -17,6 +18,8 @@ export default function Home() {
     const handleSubmitName = (e) => {
         e.preventDefault();
         router.push(`/quiz?name=${name}`);
+
+        savePlayerName(name);
     };
 
     return (
@@ -45,7 +48,7 @@ export default function Home() {
                     </Widget.Content>
                 </Widget>
 
-                <Widget>
+                {/* <Widget>
                     <Widget.Content>
                         <h1>Veja outros quizes</h1>
                         <ul>
@@ -58,7 +61,9 @@ export default function Home() {
 
                                 return (
                                     <li key={index}>
-                                        <Widget.Topic href={item}>
+                                        <Widget.Topic
+                                            as={Link}
+                                            href={`/quiz/${projectName}___${gitHubUser}`}>
                                             {`${gitHubUser}/${projectName}`}
                                         </Widget.Topic>
                                     </li>
@@ -66,10 +71,14 @@ export default function Home() {
                             })}
                         </ul>
                     </Widget.Content>
-                </Widget>
+                </Widget> */}
                 <Footer />
             </QuizContainer>
-            <GitHubCorner projectUrl="https://github.com/omariosouto" />
+            <GitHubCorner projectUrl="https://github.com/victordev13/alura-nextjs" />
         </QuizBackground>
     );
+}
+
+function savePlayerName(name) {
+    localStorage.setItem('player', name);
 }

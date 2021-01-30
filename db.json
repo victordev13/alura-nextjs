@@ -101,16 +101,11 @@
       ]
     },
     {
-      "image": "",
-      "title": "",
-      "description": "Qual o nome da cidade onde Jesus nasceu?",
-      "answer": 1,
-      "alternatives": [
-        "Nazaré",
-        "Belém",
-        "Jerusalém",
-        "Galiléia"
-      ]
+        "image": "",
+        "title": "Qual o nome da cidade onde Jesus nasceu?",
+        "description": "",
+        "answer": 1,
+        "alternatives": ["Nazaré", "Belém", "Jerusalém", "Galiléia"]
     },
     {
       "image": "",
