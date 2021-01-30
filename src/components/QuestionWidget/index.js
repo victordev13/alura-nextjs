@@ -22,8 +22,7 @@ function Success() {
                 marginTop: '10px',
                 display: 'flex',
                 alignItems: 'center',
-            }}
-        >
+            }}>
             <div
                 style={{
                     width: '30px',
@@ -32,8 +31,7 @@ function Success() {
                     borderRadius: '50px',
                     backgroundColor: db.theme.colors.success,
                     marginRight: '5px',
-                }}
-            >
+                }}>
                 <img src="/check.png" />
             </div>
             <p>Parabéns, é isso mesmo!</p>
@@ -55,8 +53,7 @@ function Error() {
                 marginTop: '10px',
                 display: 'flex',
                 alignItems: 'center',
-            }}
-        >
+            }}>
             <div
                 style={{
                     width: '30px',
@@ -65,11 +62,10 @@ function Error() {
                     borderRadius: '50px',
                     backgroundColor: db.theme.colors.wrong,
                     marginRight: '5px',
-                }}
-            >
+                }}>
                 <img src="/error.png" />
             </div>
-            <p>Opa, tu vacilou!</p>
+            <p>Opa, foi quase!</p>
         </motion.div>
     );
 }
@@ -122,8 +118,7 @@ export default function QuestionWidget({
                             setSelectedAlternative(undefined);
                             setDisabled(false);
                         }, 1500);
-                    }}
-                >
+                    }}>
                     {question.alternatives.map(
                         (alternative, alternativeIndex) => {
                             const alternativeId = `alternative__${alternativeIndex}`;
@@ -132,6 +127,12 @@ export default function QuestionWidget({
                                 : 'ERROR';
                             const isSelected =
                                 selectedAlternative === alternativeIndex;
+                            const correctAnswer =
+                                !isSelected && alternativeIndex === question.answer
+                                    ? 'CORRECT'
+                                    : '';
+                                    {console.log('correta?'+ correctAnswer)}
+
                             return (
                                 <Widget.Topic
                                     as={motion.label}
@@ -140,10 +141,12 @@ export default function QuestionWidget({
                                     htmlFor={alternativeId}
                                     key={alternativeId}
                                     data-selected={isSelected}
+                                    data-correct={
+                                        isQuestionSubmited && correctAnswer
+                                    }
                                     data-status={
                                         isQuestionSubmited && alternativeStatus
-                                    }
-                                >
+                                    }>
                                     <input
                                         style={{ display: 'none' }}
                                         id={alternativeId}
@@ -170,8 +173,7 @@ export default function QuestionWidget({
                         whileHover={{ scale: 1.01 }}
                         whileTap={{ scale: 0.99 }}
                         type="submit"
-                        disabled={!hasAlternativeSelected}
-                    >
+                        disabled={!hasAlternativeSelected}>
                         Confirmar
                     </Button>
                     {isQuestionSubmited && isCorrect && <Success />}
