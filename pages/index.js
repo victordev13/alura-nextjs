@@ -74,7 +74,7 @@ export default function Home() {
                     animate="show"
                     transition={{ delay: 0.2, duration: 0.5 }}
                 >
-                    <Widget.Content>
+                    {/* <Widget.Content>
                         <h1>Veja outros quizes</h1>
                         <ul>
                             {db.external.map((item, index) => {
@@ -96,7 +96,7 @@ export default function Home() {
                                 );
                             })}
                         </ul>
-                    </Widget.Content>
+                    </Widget.Content> */}
                 </Widget>
                 <Footer
                     as={motion.section}
