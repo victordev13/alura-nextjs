@@ -8,25 +8,14 @@
       "title": "Qual desses não teve o seu nome mudado na Bíblia?",
       "description": "",
       "answer": 3,
-      "alternatives": [
-        "Sara",
-        "Abraão",
-        "Jacó",
-        "Davi",
-        "Pedro"
-      ]
+      "alternatives": ["Sara", "Abraão", "Jacó", "Davi", "Pedro"]
     },
     {
       "image": "",
       "title": "Qual animal falou com Balaão?",
       "description": "",
       "answer": 0,
-      "alternatives": [
-        "Jumenta",
-        "Camelo",
-        "Cordeiro",
-        "Pomba"
-      ]
+      "alternatives": ["Jumenta", "Camelo", "Cordeiro", "Pomba"]
     },
     {
       "image": "",
@@ -57,12 +46,7 @@
       "title": "Qual dos discípulos negou a Jesus?",
       "description": "",
       "answer": 2,
-      "alternatives": [
-        "Judas Iscariotes",
-        "João",
-        "Pedro",
-        "Bartolomeu"
-      ]
+      "alternatives": ["Judas Iscariotes", "João", "Pedro", "Bartolomeu"]
     },
     {
       "image": "",
@@ -80,32 +64,22 @@
       "image": "",
       "title": "A Bíblia é composta por quantos livros?",
       "description": "",
-      "answer": 0,
-      "alternatives": [
-        "88 livros",
-        "37 livros",
-        "66 livros",
-        "100 livros"
-      ]
+      "answer": 2,
+      "alternatives": ["88 livros", "37 livros", "66 livros", "100 livros"]
     },
     {
       "image": "",
       "title": "Qual é o menor versículo da Bíblia? ",
       "description": "",
       "answer": 3,
-      "alternatives": [
-        "João 11:35",
-        "Ester 8:9",
-        "Êxodo 20:13",
-        "Jó 3:2"
-      ]
+      "alternatives": ["João 11:35", "Ester 8:9", "Êxodo 20:13", "Jó 3:2"]
     },
     {
-        "image": "",
-        "title": "Qual o nome da cidade onde Jesus nasceu?",
-        "description": "",
-        "answer": 1,
-        "alternatives": ["Nazaré", "Belém", "Jerusalém", "Galiléia"]
+      "image": "",
+      "title": "Qual o nome da cidade onde Jesus nasceu?",
+      "description": "",
+      "answer": 1,
+      "alternatives": ["Nazaré", "Belém", "Jerusalém", "Galiléia"]
     },
     {
       "image": "",
@@ -120,9 +94,7 @@
       ]
     }
   ],
-  "external": [
-    "https://quiz-react.brenoha.vercel.app/"
-  ],
+  "external": ["https://quiz-react.brenoha.vercel.app/"],
   "theme": {
     "colors": {
       "primary": "#307fe2",
