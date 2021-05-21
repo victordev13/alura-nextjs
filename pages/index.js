@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import db from '../db.json';
 import Widget from '../src/components/Widget';
@@ -10,11 +10,12 @@ import Input from '../src/components/Input';
 import Button from '../src/components/Button';
 import QuizContainer from '../src/components/QuizContainer';
 import { motion } from 'framer-motion';
-import Link from '../src/components/Link';
+import api from '../src/utils/api';
 
 export default function Home() {
   const router = useRouter();
-  const [name, setName] = React.useState('');
+  const [name, setName] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmitName = (e) => {
     e.preventDefault();
@@ -22,6 +23,18 @@ export default function Home() {
 
     savePlayerName(name);
   };
+
+  async function savePlayerName(name) {
+    const response = await api.post('/player/register', {
+      player: name,
+      score: 0,
+    });
+
+    if (response.status !== 200) {
+      setError(response.data.message);
+    }
+    localStorage.setItem('player', name);
+  }
 
   return (
     <QuizBackground backgroundImage={db.bg}>
@@ -50,6 +63,9 @@ export default function Home() {
                 maxLength="10"
                 autoComplete="off"
               />
+              {error && (
+                <p style={{ color: 'yellow', fontWeight: 600 }}>{error}</p>
+              )}
               <Button
                 as={motion.button}
                 whileHover={{ scale: 1.01 }}
@@ -61,41 +77,6 @@ export default function Home() {
             </form>
           </Widget.Content>
         </Widget>
-
-        {/* <Widget
-                    as={motion.section}
-                    variants={{
-                        show: { opacity: 1, y: '0' },
-                        hidden: { opacity: 0, y: '100%' },
-                    }}
-                    initial="hidden"
-                    animate="show"
-                    transition={{ delay: 0.2, duration: 0.5 }}
-                >
-                    <Widget.Content>
-                        <h1>Veja outros quizes</h1>
-                        <ul>
-                            {db.external.map((item, index) => {
-                                const [projectName, gitHubUser] = item
-                                    .replace(/\//g, '')
-                                    .replace('https:', '')
-                                    .replace('.vercel.app', '')
-                                    .split('.');
-
-                                return (
-                                    <li key={index}>
-                                        <Widget.Topic
-                                            as={Link}
-                                            href={`/quiz/${projectName}___${gitHubUser}`}
-                                        >
-                                            {`${gitHubUser}/${projectName}`}
-                                        </Widget.Topic>
-                                    </li>
-                                );
-                            })}
-                        </ul>
-                    </Widget.Content>
-                </Widget> */}
         <Footer
           as={motion.section}
           variants={{
@@ -110,8 +91,4 @@ export default function Home() {
       <GitHubCorner projectUrl="https://github.com/victordev13/alura-nextjs" />
     </QuizBackground>
   );
-}
-
-function savePlayerName(name) {
-  localStorage.setItem('player', name);
 }

@@ -9,15 +9,15 @@ const Logo = styled.div`
   }
 `;
 const LogoImg = styled.img`
-    width: 150px;
-    margin: -15px 0;
+  width: 150px;
+  margin: -15px 0;
 `;
 
 function QuizLogo() {
   return (
-      <Logo>
-          <LogoImg src="logo_quiz.png" />
-      </Logo>
+    <Logo>
+      <LogoImg src="logo_quiz.png" />
+    </Logo>
   );
 }
 

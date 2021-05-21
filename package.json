@@ -8,6 +8,7 @@
     "eslint:init": "eslint --init"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "framer-motion": "^3.2.2-rc.1",
     "mongoose": "^5.11.14",
     "next": "latest",
